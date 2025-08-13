@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type": "object",
+  "properties": {
+    "args": {
+      "type": "string",
+      "description": "Arguments to pass to the @arkahna/fetch-git-file CLI"
+    }
+  },
+  "required": ["args"]
+}

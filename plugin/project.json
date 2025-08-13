@@ -1,0 +1,11 @@
+{
+  "name": "@arkahna/fetch-git-file",
+  "targets": {
+    "fetch": {
+      "executor": "./plugin/executors/fetch:default",
+      "options": {
+        "args": ""
+      }
+    }
+  }
+}

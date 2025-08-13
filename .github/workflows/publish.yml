@@ -1,0 +1,113 @@
+name: publish
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write        # release notes + asset upload
+  id-token: write        # npm provenance (OIDC)
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          check-latest: true
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Verify tag matches package.json version
+        id: version_check
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "package.json: $PKG_VERSION  tag: $TAG_VERSION"
+          if [ "$PKG_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag does not match package.json version"; exit 1
+          fi
+          echo "version=$PKG_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate SBOM (CycloneDX)
+        run: pnpm dlx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
+
+      - name: Pack tarball for local install
+        id: pack
+        run: |
+          # npm pack prints the filename; capture it
+          TARBALL=$(npm pack)
+          echo "tarball=$TARBALL" >> $GITHUB_OUTPUT
+          ls -lah "$TARBALL"
+
+      - name: Local-install smoke test (CJS/ESM)
+        run: |
+          set -euo pipefail
+          PKG_NAME=$(node -p "require('./package.json').name")
+          TARBALL="${{ steps.pack.outputs.tarball }}"
+          WORKDIR=$(mktemp -d)
+          echo "Using temp dir: $WORKDIR"
+          pushd "$WORKDIR" >/dev/null
+          npm init -y >/dev/null 2>&1
+          npm i "../$TARBALL" >/dev/null 2>&1
+
+          # Try to locate an entry: prefer exports, then module, then main
+          node -e "
+          const fs=require('fs'); const path=require('path');
+          const pkgName='${PKG_NAME}';
+          const mod=require(pkgName + '/package.json');
+          const entry = (mod.exports && (mod.exports['.']?.default || mod.exports['.']?.import)) || mod.module || mod.main || '';
+          const type = mod.type || 'commonjs';
+          const target = entry ? path.join(path.dirname(require.resolve(pkgName + '/package.json')), entry) : require.resolve(pkgName);
+          if (type==='module') {
+            import(target).then(()=>process.exit(0)).catch((e)=>{console.error(e);process.exit(1);});
+          } else {
+            try { require(target); process.exit(0); } catch(e){ console.error(e); process.exit(1); }
+          }"
+
+          popd >/dev/null
+          rm -rf "$WORKDIR"
+
+      - name: Upload artefacts (tarball + SBOM)
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-artifacts-v${{ steps.version_check.outputs.version }}
+          path: |
+            ${{ steps.pack.outputs.tarball }}
+            sbom.xml
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Publish to npm with provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
+
+      - name: Create GitHub Release (attach tarball & SBOM)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version_check.outputs.version }}
+          name: v${{ steps.version_check.outputs.version }}
+          generate_release_notes: true
+          files: |
+            ${{ steps.pack.outputs.tarball }}
+            sbom.xml

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "executors": {
+    "fetch": {
+      "implementation": "./executors/fetch/executor.js",
+      "schema": "./executors/fetch/schema.json",
+      "description": "Run @arkahna/fetch-git-file via Nx"
+    }
+  }
+}
