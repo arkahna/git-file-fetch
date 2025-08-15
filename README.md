@@ -1,7 +1,7 @@
-# fetch-git-file
+# git-file-fetch
 
-[![CI](https://github.com/arkahna/fetch-git-file/actions/workflows/ci.yml/badge.svg)](https://github.com/arkahna/fetch-git-file/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@arkahna/fetch-git-file)](https://www.npmjs.com/package/@arkahna/fetch-git-file)
+[![CI](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml/badge.svg)](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@arkahna/git-file-fetch)](https://www.npmjs.com/package/@arkahna/git-file-fetch)
 [![license: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![node >= 18](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](#requirements)
 
@@ -11,19 +11,19 @@ A lightweight CLI to fetch individual files from remote Git repositories and tra
 
 ### 🚀 **Just want to use it?**
 ```bash
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:path/to/file.ts"
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### 📦 **Want to install it?**
 ```bash
-npm install -D @arkahna/fetch-git-file
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:path/to/file.ts"
+npm install -D @arkahna/git-file-fetch
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### 🔧 **Want to test/develop it?**
 ```bash
-git clone https://github.com/arkahna/fetch-git-file.git
-cd fetch-git-file
+git clone https://github.com/arkahna/git-file-fetch.git
+cd git-file-fetch
 pnpm install && pnpm build
 node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
 ```

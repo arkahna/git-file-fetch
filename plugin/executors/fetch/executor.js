@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 export default async function runExecutor(options, _context) {
     try {
-        const command = `npx @arkahna/fetch-git-file ${options.args}`;
+        const command = `npx @arkahna/git-file-fetch ${options.args}`;
         console.log(`Running: ${command}`);
         execSync(command, { stdio: 'inherit' });
         return { success: true };

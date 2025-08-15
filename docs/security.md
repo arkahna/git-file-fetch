@@ -6,7 +6,7 @@ We aim to support the current and previous Node.js LTS versions for the CLI. Old
 
 ## Reporting a Vulnerability
 
-- Email: security@arkahna.io
+- Email: [security@arkahna.io](mailto:security@arkahna.io)
 - Please provide details to reproduce, affected versions, and potential impact.
 - Do not create a public issue for sensitive reports.
 

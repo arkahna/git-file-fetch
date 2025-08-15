@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @arkahna/fetch-git-file
+// @arkahna/git-file-fetch
 // Fetch specific file(s) from remote Git repos and drop them into your project.
 // Tracks origin in .git-remote-files.json for reproducibility.
 
@@ -63,10 +63,10 @@ function createLogger(quiet: boolean, verbose: boolean) {
 
 function printHelp() {
   const usage = `
-@arkahna/fetch-git-file
+@arkahna/git-file-fetch
 
 Usage:
-  @arkahna/fetch-git-file '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
+  @arkahna/git-file-fetch '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
 
 Options:
   --dry-run           Simulate only; do not write files or update the manifest
@@ -86,10 +86,10 @@ Options:
   -h, --help          Show this help and exit
 
 Examples:
-  npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:src/utils/logger.ts"
-  npx @arkahna/fetch-git-file "https://github.com/user/repo.git@v1.2.3:LICENSE" --force
-  npx @arkahna/fetch-git-file --out third_party "https://github.com/user/repo.git@main:tools/script.sh"
-  npx @arkahna/fetch-git-file --config refs.json --out vendor --json
+  npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
+  npx @arkahna/git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE" --force
+  npx @arkahna/git-file-fetch --out third_party "https://github.com/user/repo.git@main:tools/script.sh"
+  npx @arkahna/git-file-fetch --config refs.json --out vendor --json
 
 Exit codes:
   0  Success
@@ -204,7 +204,7 @@ function updateManifest(manifestPath: string, remote: RemoteFile) {
 }
 
 function fsTempDir(): string {
-  const dir = join(tmpdir(), `arkahna-fetch-git-file-${Date.now()}`);
+  const dir = join(tmpdir(), `arkahna-git-file-fetch-${Date.now()}`);
   mkdirSync(dir);
   return dir;
 }

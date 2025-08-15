@@ -35,6 +35,7 @@ yarn add -D @arkahna/fetch-git-file
 ```
 
 Then run:
+
 ```bash
 npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
@@ -69,11 +70,13 @@ pnpm run test:smoke
 ## Basic Usage
 
 The basic command format is:
+
 ```bash
 fetch-git-file '<repo.git>@<ref>:<path>'
 ```
 
 Where:
+
 - **repo.git**: Full git URL (https, ssh also works if your environment supports it)
 - **ref**: Branch, tag, or commit-ish (defaults to `main` if omitted)
 - **path**: Path to the file within the repo at the given ref

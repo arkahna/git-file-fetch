@@ -2,7 +2,7 @@
 
 ## Overview
 
-`fetch-git-file` supports multiple configuration methods to make it easy to manage file dependencies across different projects and environments.
+`git-file-fetch` supports multiple configuration methods to make it easy to manage file dependencies across different projects and environments.
 
 ## Configuration Methods
 
@@ -11,7 +11,7 @@
 The simplest way to configure the tool is through command line arguments:
 
 ```bash
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:src/file.ts"
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/file.ts"
 ```
 
 ### 2. Configuration Files
@@ -19,7 +19,7 @@ npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:src/file.ts"
 For multiple files or complex setups, use the `--config` option with a JSON file:
 
 ```bash
-npx @arkahna/fetch-git-file --config refs.json --out vendor
+npx @arkahna/git-file-fetch --config refs.json --out vendor
 ```
 
 ### 3. Environment Variables
@@ -29,7 +29,7 @@ Configure behavior through environment variables:
 ```bash
 export FETCH_GIT_FILE_MAX_BYTES=5000000  # 5MB limit
 export FETCH_GIT_FILE_TIMEOUT_MS=30000   # 30 second timeout
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:file.txt"
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:file.txt"
 ```
 
 ## Configuration File Format
@@ -125,7 +125,7 @@ This keeps the manifest local to your development environment.
 Override the default manifest location:
 
 ```bash
-npx @arkahna/fetch-git-file \
+npx @arkahna/git-file-fetch \
   --manifest ./config/external-files.json \
   "https://github.com/user/repo.git@main:file.txt"
 ```
@@ -137,7 +137,7 @@ npx @arkahna/fetch-git-file \
 Specify where fetched files should be placed:
 
 ```bash
-npx @arkahna/fetch-git-file \
+npx @arkahna/git-file-fetch \
   --out ./third_party \
   "https://github.com/user/repo.git@main:src/file.ts"
 ```
@@ -147,7 +147,7 @@ npx @arkahna/fetch-git-file \
 Change the working directory before running:
 
 ```bash
-npx @arkahna/fetch-git-file \
+npx @arkahna/git-file-fetch \
   --cwd ./subproject \
   --out ./deps \
   "https://github.com/user/repo.git@main:file.txt"
@@ -160,7 +160,7 @@ npx @arkahna/fetch-git-file \
 Configure network behavior:
 
 ```bash
-npx @arkahna/fetch-git-file \
+npx @arkahna/git-file-fetch \
   --timeout-ms 30000 \
   --retries 3 \
   --retry-backoff-ms 1000 \
@@ -195,7 +195,7 @@ jobs:
         with:
           node-version: 20
       - run: |
-          npx @arkahna/fetch-git-file \
+          npx @arkahna/git-file-fetch \
             --config deps.json \
             --out third_party \
             --json \
@@ -208,7 +208,7 @@ jobs:
 fetch-deps:
   image: node:20
   script:
-    - npx @arkahna/fetch-git-file --config deps.json --out third_party --json
+    - npx @arkahna/git-file-fetch --config deps.json --out third_party --json
   artifacts:
     paths:
       - third_party/
@@ -260,14 +260,14 @@ For private GitHub repositories, use one of these authentication methods:
 ```bash
 # Option 1: Personal Access Token (PAT)
 export GITHUB_TOKEN=ghp_your_token_here
-npx fetch-git-file "https://github.com/org/private-repo.git@main:src/config.json"
+npx git-file-fetch "https://github.com/org/private-repo.git@main:src/config.json"
 
 # Option 2: SSH with SSH agent
-npx fetch-git-file "git@github.com:org/private-repo.git@main:src/config.json"
+npx git-file-fetch "git@github.com:org/private-repo.git@main:src/config.json"
 
 # Option 3: GitHub CLI authentication
 gh auth login
-npx fetch-git-file "https://github.com/org/private-repo.git@main:src/config.json"
+npx git-file-fetch "https://github.com/org/private-repo.git@main:src/config.json"
 ```
 
 ### GitLab
@@ -275,10 +275,10 @@ npx fetch-git-file "https://github.com/org/private-repo.git@main:src/config.json
 ```bash
 # Option 1: Personal Access Token
 export GITLAB_TOKEN=glpat_your_token_here
-npx fetch-git-file "https://gitlab.com/group/private-repo.git@main:src/config.json"
+npx git-file-fetch "https://gitlab.com/group/private-repo.git@main:src/config.json"
 
 # Option 2: SSH
-npx fetch-git-file "git@gitlab.com:group/private-repo.git@main:src/config.json"
+npx git-file-fetch "git@gitlab.com:group/private-repo.git@main:src/config.json"
 ```
 
 ### Azure DevOps
@@ -286,7 +286,7 @@ npx fetch-git-file "git@gitlab.com:group/private-repo.git@main:src/config.json"
 ```bash
 # Personal Access Token
 export AZURE_DEVOPS_TOKEN=your_token_here
-npx fetch-git-file "https://dev.azure.com/org/project/_git/repo@main:src/config.json"
+npx git-file-fetch "https://dev.azure.com/org/project/_git/repo@main:src/config.json"
 ```
 
 ### CI/CD Authentication
@@ -299,14 +299,14 @@ In CI environments, use appropriate secrets:
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   run: |
-    npx fetch-git-file "https://github.com/org/private-repo.git@main:src/config.json"
+    npx git-file-fetch "https://github.com/org/private-repo.git@main:src/config.json"
 
 # GitLab CI
 fetch-private:
   variables:
     GITLAB_TOKEN: $GITLAB_TOKEN
   script:
-    - npx fetch-git-file "https://gitlab.com/group/private-repo.git@main:src/config.json"
+    - npx git-file-fetch "https://gitlab.com/group/private-repo.git@main:src/config.json"
 ```
 
 **Important**: Never commit authentication tokens to your repository. Use environment variables or CI secrets.

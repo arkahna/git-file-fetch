@@ -4,7 +4,7 @@
     "fetch": {
       "implementation": "./executors/fetch/executor.js",
       "schema": "./executors/fetch/schema.json",
-      "description": "Run @arkahna/fetch-git-file via Nx"
+      "description": "Run @arkahna/git-file-fetch via Nx"
     }
   }
 }
