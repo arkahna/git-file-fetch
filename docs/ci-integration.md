@@ -1,10 +1,11 @@
 # CI Integration
 
-This guide covers how to integrate `@arkahna/fetch-git-file` into your CI/CD pipelines for automated file fetching and verification.
+This guide covers how to integrate `@arkahna/git-file-fetch` into your CI/CD pipelines for automated file fetching and verification.
 
 ## Overview
 
-`@arkahna/fetch-git-file` is designed to work seamlessly in CI environments, providing:
+`@arkahna/git-file-fetch` is designed to work seamlessly in CI environments, providing:
+
 - **Reproducible builds** through manifest tracking
 - **Dry-run verification** without file modifications
 - **JSON output** for machine-readable results
@@ -31,7 +32,7 @@ jobs:
       
       - name: Verify external files
         run: |
-          npx @arkahna/fetch-git-file \
+          npx @arkahna/git-file-fetch \
             "https://github.com/octokit/core.js.git@main:LICENSE" \
             "https://github.com/microsoft/TypeScript.git@main:README.md" \
             --dry-run \
@@ -47,7 +48,7 @@ verify:
   before_script:
     - apk add --no-cache git
   script:
-    - npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:src/config.json" --dry-run
+    - npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/config.json" --dry-run
 ```
 
 ### Jenkins Pipeline
@@ -59,7 +60,7 @@ pipeline {
         stage('Verify Dependencies') {
             steps {
                 sh '''
-                    npx @arkahna/fetch-git-file \\
+                    npx @arkahna/git-file-fetch \\
                         "https://github.com/user/repo.git@main:src/utils.ts" \\
                         --dry-run \\
                         --json
@@ -80,7 +81,7 @@ Verify that external files haven't changed unexpectedly:
 - name: Verify external dependencies
   run: |
     # Fetch files and compare with manifest
-    npx @arkahna/fetch-git-file --config deps.json --dry-run --json > verification.json
+    npx @arkahna/git-file-fetch --config deps.json --dry-run --json > verification.json
     
     # Check if any files have changed
     if jq -e '.results[] | select(.status != "unchanged")' verification.json; then
@@ -110,7 +111,7 @@ jobs:
       
       - name: Update external files
         run: |
-          npx @arkahna/fetch-git-file --config deps.json --out third_party
+          npx @arkahna/git-file-fetch --config deps.json --out third_party
       
       - name: Commit changes
         run: |
@@ -185,7 +186,7 @@ jobs:
 Always use `--dry-run` in CI to verify files without modifying your repository:
 
 ```bash
-npx @arkahna/fetch-git-file --config deps.json --dry-run --json
+npx @arkahna/git-file-fetch --config deps.json --dry-run --json
 ```
 
 ### 2. Commit the Manifest
@@ -204,7 +205,7 @@ Configure timeouts for network operations in CI:
 ```bash
 export FETCH_GIT_FILE_TIMEOUT_MS=30000  # 30 seconds
 export FETCH_GIT_FILE_RETRIES=3
-npx @arkahna/fetch-git-file --config deps.json
+npx @arkahna/git-file-fetch --config deps.json
 ```
 
 ### 4. Use JSON Output for Automation
@@ -212,7 +213,7 @@ npx @arkahna/fetch-git-file --config deps.json
 Parse JSON output for programmatic handling:
 
 ```bash
-npx @arkahna/fetch-git-file --config deps.json --json | jq '.results[] | select(.status == "error")'
+npx @arkahna/git-file-fetch --config deps.json --json | jq '.results[] | select(.status == "error")'
 ```
 
 ### 5. Handle Authentication
@@ -224,7 +225,7 @@ For private repositories, use appropriate authentication:
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   run: |
-    npx @arkahna/fetch-git-file \
+    npx @arkahna/git-file-fetch \
       "https://github.com/org/private-repo.git@main:src/config.json" \
       --dry-run
 ```
@@ -249,7 +250,7 @@ For private repositories, use appropriate authentication:
 Enable verbose output for troubleshooting:
 
 ```bash
-npx @arkahna/fetch-git-file --config deps.json --verbose --dry-run
+npx @arkahna/git-file-fetch --config deps.json --verbose --dry-run
 ```
 
 ## Security Considerations
@@ -261,4 +262,4 @@ npx @arkahna/fetch-git-file --config deps.json --verbose --dry-run
 
 ## Examples Repository
 
-See [examples/ci-workflows](https://github.com/arkahna/fetch-git-file/tree/main/examples/ci-workflows) for complete working examples of various CI integrations.
+See [examples/ci-workflows](https://github.com/arkahna/git-file-fetch/tree/main/examples/ci-workflows) for complete working examples of various CI integrations.

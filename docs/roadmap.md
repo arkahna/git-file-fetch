@@ -2,7 +2,7 @@
 
 ## Overview
 
-`fetch-git-file` is a lightweight CLI tool designed to fetch individual files from remote Git repositories and track them locally for reproducibility. This roadmap outlines our development phases, from initial release to future enhancements.
+`git-file-fetch` is a lightweight CLI tool designed to fetch individual files from remote Git repositories and track them locally for reproducibility. This roadmap outlines our development phases, from initial release to future enhancements.
 
 ## Current Status: Pre-Release 🚧
 
@@ -10,7 +10,7 @@ We're currently in the final stages of preparation before our first npm release.
 
 ### ✅ Completed (Pre-Release)
 
-- [x] **Repository Setup**: Renamed to `fetch-git-file` with aligned npm package name
+- [x] **Repository Setup**: Renamed to `git-file-fetch` with aligned npm package name
 - [x] **License**: MIT license added
 - [x] **Package Metadata**: Complete with all required fields
 - [x] **Documentation**: Comprehensive README with install, quickstart, CLI synopsis, examples
@@ -33,7 +33,8 @@ We're currently in the final stages of preparation before our first npm release.
 **Timeline**: Immediate post-release  
 **Focus**: Stability and essential features
 
-### TODO Checklist
+### Phase 1 TODO Checklist
+
 - [x] **Config File Support**: Add `--config <file>` to read multiple refs from JSON
 - [x] **Error Handling**: Better error codes/messages for CI (non-zero on any failure); `--json` structured output
 - [x] **Cross-Platform**: Windows path normalization (`\` and `//`); ensure safe relative writes
@@ -44,6 +45,7 @@ We're currently in the final stages of preparation before our first npm release.
 - [x] **Testing**: Basic e2e test - fetch file from GitHub public repo; verify content and path
 
 ### Success Criteria
+
 - All v1.0 TODO items completed
 - CI green across all platforms
 - npm package published and accessible
@@ -54,7 +56,8 @@ We're currently in the final stages of preparation before our first npm release.
 **Timeline**: Q2 2024  
 **Focus**: Advanced workflows and provider support
 
-### TODO Checklist
+### Phase 2 TODO Checklist
+
 - [ ] **Update Command**: Implement `update` command to re-fetch items from manifest
 - [ ] **Verify Command**: Add `verify` command to diff local vs remote @ recorded ref (CI-friendly); `--changed-only` flag
 - [ ] **Concurrency**: Add concurrency flag for multiple fetches (Promise-based); sensible default, limit via `--concurrency`
@@ -63,6 +66,7 @@ We're currently in the final stages of preparation before our first npm release.
 - [ ] **Network Features**: Add proxy support via envs; custom user-agent; rate-limit handling
 
 ### Technical Improvements
+
 - Promise-based concurrency with configurable limits
 - Provider interface abstraction for future extensibility
 - Enhanced authentication flow documentation
@@ -72,8 +76,9 @@ We're currently in the final stages of preparation before our first npm release.
 **Timeline**: Q3 2024  
 **Focus**: User experience and performance optimization
 
-### TODO Checklist
-- [ ] **Branded Config**: Optional `.fetch-git-file.json` branded config (keep `.git-remote-files.json` compatibility)
+### Phase 3 TODO Checklist
+
+- [ ] **Branded Config**: Optional `.git-file-fetch.json` branded config (keep `.git-remote-files.json` compatibility)
 - [ ] **Archive Mode**: Add `--archive` mode to avoid full clone when possible
 - [ ] **Unit Testing**: Create basic unit tests - dry-run path, parser, manifest writing; coverage target ≥85%
 - [ ] **CLI UX**: Better `--help` with subcommands; examples; shell completion stubs (bash/zsh)
@@ -81,6 +86,7 @@ We're currently in the final stages of preparation before our first npm release.
 - [ ] **Integrity**: Add content integrity with checksum recording in manifest; `verify` validates checksum optionally
 
 ### Quality Goals
+
 - Comprehensive test coverage
 - Performance benchmarks established
 - Enhanced user experience documentation
@@ -90,13 +96,15 @@ We're currently in the final stages of preparation before our first npm release.
 **Timeline**: Q4 2024  
 **Focus**: Nx workspace integration
 
-### TODO Checklist
-- [ ] **Executor Package**: Spin out `@arkahna/nx-fetch-git-file` executor + `nx add` generator
+### Phase 4 TODO Checklist
+
+- [ ] **Executor Package**: Spin out `@arkahna/nx-git-file-fetch` executor + `nx add` generator
 - [ ] **Example Workspace**: Create E2E example workspace + docs (include CI usage)
 - [ ] **Caching Config**: Add caching config for outputs if you add `update`/`verify` targets
 - [ ] **Release Automation**: Version alignment and release automation between core and plugin
 
 ### Integration Features
+
 - Version alignment between core and plugin
 - Automated release coordination
 - Comprehensive Nx workspace examples
@@ -104,6 +112,7 @@ We're currently in the final stages of preparation before our first npm release.
 ## Documentation & Developer Experience 📚
 
 ### TODO Checklist
+
 - [ ] **Documentation Site**: Create docs site or README sections - configuration schema, examples, CI snippets (GitHub Actions, GitLab CI)
 - [ ] **Troubleshooting Guide**: Document auth failures, SSH vs HTTPS, path issues, Windows notes
 - [ ] **Contribution Guide**: Add `CONTRIBUTING.md`, code of conduct, issue/PR templates
@@ -112,7 +121,8 @@ We're currently in the final stages of preparation before our first npm release.
 
 ## Security & Compliance 🔒
 
-### TODO Checklist
+### Security TODO Checklist
+
 - [ ] **Secret Handling**: Ensure secret redaction in logs; zero token echo
 - [ ] **Path Security**: Path sanitization; block absolute and parent (`..`) escapes
 - [ ] **Network Security**: Limit network sources to declared providers; validate URLs
@@ -121,7 +131,8 @@ We're currently in the final stages of preparation before our first npm release.
 
 ## Release Operations 🚀
 
-### TODO Checklist
+### Release TODO Checklist
+
 - [ ] **Versioning Policy**: Document SemVer policy
 - [ ] **Pre-release Channel**: Setup channel for canaries (e.g., `@next`)
 - [ ] **Post-publish Validation**: Smoke test on all OS with released version
@@ -130,11 +141,13 @@ We're currently in the final stages of preparation before our first npm release.
 ## Long-term Vision 🌟
 
 ### Provider Expansion
+
 - [ ] **GitLab Integration**: Additional providers - GitLab with per-provider auth helpers
 - [ ] **Bitbucket Support**: Bitbucket Cloud and Server compatibility
 - [ ] **Custom Providers**: Plugin system for custom resolvers
 
 ### Advanced Features
+
 - [ ] **SSH-Only Environments**: Enhanced SSH support; private submodules handling
 - [ ] **HTTP Caching**: ETag/If-None-Match for hosted APIs
 - [ ] **Partial Fetch**: Range-based downloads for large files (where API supports)
@@ -142,13 +155,15 @@ We're currently in the final stages of preparation before our first npm release.
 - [ ] **Telemetry**: Opt-in telemetry with privacy policy
 
 ### Developer Experience
+
 - **Plugin Architecture**: Extensible resolver system
 - **Usage Analytics**: Optional telemetry with privacy controls
 - **Documentation**: Comprehensive guides and troubleshooting
 
 ## Quality Assurance Matrix
 
-### TODO Checklist
+### Quality TODO Checklist
+
 - [ ] **Platform Testing**:
   - [ ] OS: Linux, macOS, Windows
   - [ ] Node: 18, 20, 22
@@ -172,6 +187,7 @@ We're currently in the final stages of preparation before our first npm release.
 ## Release Strategy
 
 ### Versioning Policy
+
 - **Semantic Versioning**: Following SemVer 2.0 specification
 - **Patch releases**: Bug fixes and minor improvements (1.0.x)
 - **Minor releases**: New features, backward compatible (1.x.0)
@@ -180,6 +196,7 @@ We're currently in the final stages of preparation before our first npm release.
 - **LTS Support**: Extended support for stable releases
 
 ### Release Process
+
 1. **Automated Testing**: Full matrix validation
 2. **Security Review**: Dependency and code security audit
 3. **Documentation**: Updated guides and changelog
@@ -198,6 +215,7 @@ We welcome community input on our roadmap priorities. Please:
 ## Success Metrics & Definitions of Done
 
 ### Phase Completion Criteria
+
 - **Pre-publish**: All must-do items checked, CI green on matrix, npm package published, smoke tests pass
 - **v1.0**: Flags and error model stable, docs updated, unit + e2e green
 - **v1.1**: `update`/`verify` implemented with concurrency, provider abstraction in place
@@ -205,6 +223,7 @@ We welcome community input on our roadmap priorities. Please:
 - **v2.0**: Full Nx integration with example workspace
 
 ### Quality Targets
+
 - **Test Coverage**: ≥85% for v1.2+
 - **Performance**: <2s for single file fetch
 - **Reliability**: 99.9% success rate on supported platforms
@@ -213,10 +232,11 @@ We welcome community input on our roadmap priorities. Please:
 ## Issue Labels
 
 Recommended labels for tracking work:
+
 - `type:feat`, `type:fix`, `type:docs`, `type:ci`, `type:security`
 - `platform:win`, `provider:github`, `area:cli`, `area:manifest`
 - `good first issue`
 
 ---
 
-*This roadmap is a living document and will be updated as we progress through development phases. For the latest status, check our [GitHub Issues](https://github.com/arkahna/fetch-git-file/issues) and [Releases](https://github.com/arkahna/fetch-git-file/releases).*
+*This roadmap is a living document and will be updated as we progress through development phases. For the latest status, check our [GitHub Issues](https://github.com/arkahna/git-file-fetch/issues) and [Releases](https://github.com/arkahna/git-file-fetch/releases).*

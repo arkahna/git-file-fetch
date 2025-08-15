@@ -1,5 +1,5 @@
 {
-  "name": "@arkahna/fetch-git-file",
+  "name": "@arkahna/git-file-fetch",
   "version": "0.1.0",
   "description": "Fetch specific files from remote git repos and track them locally.",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     ".": "./dist/index.js"
   },
   "bin": {
-    "fetch-git-file": "dist/index.js"
+    "git-file-fetch": "dist/index.js"
   },
   "scripts": {
     "start": "ts-node --esm src/index.ts",
@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkahna/fetch-git-file.git"
+    "url": "git+https://github.com/arkahna/git-file-fetch.git"
   },
   "bugs": {
-    "url": "https://github.com/arkahna/fetch-git-file/issues"
+    "url": "https://github.com/arkahna/git-file-fetch/issues"
   },
-  "homepage": "https://github.com/arkahna/fetch-git-file#readme",
+  "homepage": "https://github.com/arkahna/git-file-fetch#readme",
   "executors": "./plugin/executors.json",
   "devDependencies": {
     "@eslint/js": "^9.33.0",

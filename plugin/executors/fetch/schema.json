@@ -4,7 +4,7 @@
   "properties": {
     "args": {
       "type": "string",
-      "description": "Arguments to pass to the @arkahna/fetch-git-file CLI"
+      "description": "Arguments to pass to the @arkahna/git-file-fetch CLI"
     }
   },
   "required": ["args"]

@@ -1,8 +1,8 @@
-# Contributing to `fetch-git-file`
+# Contributing to `git-file-fetch`
 
 Thanks for taking the time to contribute! This project is a small, focused CLI (with a thin Nx executor) that fetches specific files from remote Git repositories and records provenance.
 
-- **Binary**: `fetch-git-file`
+- **Binary**: `git-file-fetch`
 - **Node**: >= 18
 - **Packages**: TypeScript, ESLint, Prettier
 
