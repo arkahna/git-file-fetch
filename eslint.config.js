@@ -74,6 +74,6 @@ export default [
         },
       },
   {
-    ignores: ['dist/**', 'node_modules/**', '.pnpm-store/**', 'plugin/**/*.js'],
+    ignores: ['dist/**', 'node_modules/**', '.pnpm-store/**', 'plugin/**/*.js', 'src/**/*.js'],
   },
 ];

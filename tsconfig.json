@@ -7,9 +7,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
+    "outDir": "./src",
     "rootDir": "./src",
-    "types": ["node"]
+    "types": ["node"],
+    "noEmit": false
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "src/**/*.js", "src/**/*.js.map"]
 }

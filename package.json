@@ -2,22 +2,22 @@
   "name": "@arkahna/git-file-fetch",
   "version": "0.1.0",
   "description": "Fetch specific files from remote git repos and track them locally.",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "type": "module",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./src/index.js"
   },
   "bin": {
-    "git-file-fetch": "dist/index.js"
+    "git-file-fetch": "src/index.js"
   },
   "scripts": {
     "start": "ts-node --esm src/index.ts",
     "build": "npx tsc -p tsconfig.json && npx tsc -p tsconfig.plugin.json && pnpm run build:plugin-assets",
-    "build:plugin-assets": "node -e \"require('fs').mkdirSync('dist/plugin/executors/fetch', {recursive: true})\" && node -e \"require('fs').copyFileSync('plugin/executors.json', 'dist/plugin/executors.json')\" && node -e \"require('fs').copyFileSync('plugin/executors/fetch/schema.json', 'dist/plugin/executors/fetch/schema.json')\"",
+    "build:plugin-assets": "node -e \"require('fs').copyFileSync('plugin/executors.json', 'plugin/executors.json')\" && node -e \"require('fs').copyFileSync('plugin/executors/fetch/schema.json', 'plugin/executors/fetch/schema.json')\"",
     "typecheck": "npx tsc --noEmit",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
-    "test:smoke": "node dist/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
+    "test:smoke": "node src/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
     "prepack": "pnpm run build"
   },
   "keywords": [
@@ -55,7 +55,7 @@
     "node": ">=18"
   },
   "files": [
-    "dist",
+    "src/**/*.js",
     "plugin"
   ],
   "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",

@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "rootDir": "./plugin",
     "declaration": false,
-    "noEmit": false
+    "noEmit": false,
+    "outDir": "./src"
   },
   "include": ["plugin/**/*.ts"]
 }
