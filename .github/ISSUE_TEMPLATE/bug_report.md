@@ -11,7 +11,7 @@ A clear and concise description of what the bug is.
 Steps to reproduce the behavior:
 1. Command run (redact secrets):
 ```
-npx fetch-git-file "<repo.git>@<ref>:<path>" [flags]
+npx git-file-fetch "<repo.git>@<ref>:<path>" [flags]
 ```
 2. Output/error:
 ```

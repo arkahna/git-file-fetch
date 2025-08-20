@@ -24,9 +24,17 @@ npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.
 ```bash
 git clone https://github.com/arkahna/git-file-fetch.git
 cd git-file-fetch
-pnpm install && pnpm build
+pnpm install
+pnpm build
 node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
 ```
+
+**Available development commands:**
+- `pnpm build` - Build the project
+- `pnpm typecheck` - Run TypeScript type checking
+- `pnpm lint:check` - Run ESLint checks
+- `pnpm lint` - Run ESLint with auto-fix
+- `pnpm test:smoke` - Run smoke test
 
 ## What it does
 
