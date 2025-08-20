@@ -45,7 +45,7 @@ pnpm start "https://github.com/user/repo.git@main:file.txt" --json
 The entire CLI logic is in `src/index.ts`. Key components:
 
 1. **URL Parsing**: Custom parser for `<repo.git>@<ref>:<path>` format
-2. **Git Operations**: Uses `child_process.spawn` for git commands
+2. **Git Operations**: Uses `child_process.execFileSync` for git commands
 3. **Manifest Management**: Reads/writes `.git-remote-files.json`
 4. **Error Handling**: Typed errors with stable exit codes
 
@@ -55,7 +55,7 @@ Located in `plugin/executors/fetch/`. Provides Nx workspace integration:
 
 - Schema: `plugin/executors/fetch/schema.json`
 - Implementation: `plugin/executors/fetch/executor.ts`
-- Build output: `dist/plugin/`
+- Build output: Compiled in-place alongside source files
 
 ### Key Design Patterns
 

@@ -1,0 +1,32 @@
+# Source TypeScript files
+src/**/*.ts
+plugin/**/*.ts
+
+# Development and configuration files
+.git
+.gitignore
+.github
+.cursor
+.vscode
+*.log
+node_modules
+.pnpm-store
+CLAUDE.md
+
+# TypeScript config files
+tsconfig.json
+tsconfig.plugin.json
+
+# Development scripts and tools
+.eslintrc.json
+prettier.config.js
+
+# Tests and smoke tests
+test
+tests
+*.test.js
+*.spec.js
+
+# Build artifacts that shouldn't be published
+*.js.map
+*.d.ts.map
