@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Shallow Git operations without full repository cloning
 - Manifest tracking via `.git-remote-files.json`
 - Cross-platform support (Windows, macOS, Linux)
-- Node.js 18+ support
+- Node.js 20+ support (20, 22, 23, 24)
 - Command line flags:
   - `--dry-run` - Simulate without writing files
   - `--force` - Overwrite existing files

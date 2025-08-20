@@ -23,7 +23,7 @@ What you expected to happen.
 
 ### Environment
 - OS: [e.g. Ubuntu 24.04, macOS 14, Windows 11]
-- Node version: [e.g. 18.20.3]
+- Node version: [e.g. 20.18.3]
 - CLI version (if installed locally): [e.g. 1.0.0]
 
 ### Additional context

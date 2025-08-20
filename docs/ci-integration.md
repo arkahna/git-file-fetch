@@ -130,7 +130,7 @@ Test against different environments:
 strategy:
   matrix:
     environment: [staging, production]
-    node-version: [18, 20]
+    node-version: [20, 22, 23, 24]
 
 jobs:
   test:

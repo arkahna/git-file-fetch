@@ -52,7 +52,7 @@
     "typescript": "^5.9.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20.0.0 <25.0.0"
   },
   "files": [
     "src/**/*.js",

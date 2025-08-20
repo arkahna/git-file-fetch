@@ -3,13 +3,13 @@
 Thanks for taking the time to contribute! This project is a small, focused CLI (with a thin Nx executor) that fetches specific files from remote Git repositories and records provenance.
 
 - **Binary**: `git-file-fetch`
-- **Node**: >= 18
+- **Node**: >= 20 (supports 20, 22, 23, 24)
 - **Packages**: TypeScript, ESLint, Prettier
 
 ## Getting started
 
 - Fork and clone the repo
-- Ensure you have Node 18/20/22 available and `pnpm` installed
+- Ensure you have Node 20/22/23/24 available and `pnpm` installed
 - Install deps:
 
 ```bash

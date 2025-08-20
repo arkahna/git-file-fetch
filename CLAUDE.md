@@ -6,16 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `@arkahna/git-file-fetch` is a TypeScript CLI tool that fetches individual files from remote Git repositories without cloning. It uses shallow Git operations and maintains a manifest file (`.git-remote-files.json`) to track fetched files.
 
+## Requirements
+
+- Node.js >= 20 (supports versions 20, 22, 23, 24)
+- pnpm v10.15.0 (specified in packageManager field)
+
 ## Essential Commands
 
 ### Development
 
 ```bash
-pnpm install              # Install dependencies (uses pnpm v10.14.0)
+pnpm install              # Install dependencies
 pnpm start               # Run TypeScript directly with ts-node
 pnpm build               # Build both main CLI and Nx plugin
 pnpm typecheck           # Run TypeScript type checking
 pnpm lint                # Run ESLint with auto-fix
+pnpm lint:check          # Run ESLint without auto-fix (check only)
 pnpm test:smoke          # Run smoke test against real GitHub repo
 ```
 
@@ -36,7 +42,7 @@ pnpm start "https://github.com/user/repo.git@main:file.txt" --json
 
 ### Core Implementation
 
-The entire CLI logic is in `src/index.ts` (551 lines). Key components:
+The entire CLI logic is in `src/index.ts`. Key components:
 
 1. **URL Parsing**: Custom parser for `<repo.git>@<ref>:<path>` format
 2. **Git Operations**: Uses `child_process.execFileSync` for git commands
