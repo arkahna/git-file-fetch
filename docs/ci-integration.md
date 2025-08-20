@@ -143,7 +143,7 @@ jobs:
       
       - name: Test with ${{ matrix.environment }} config
         run: |
-          npx @arkahna/fetch-git-file \
+          npx @arkahna/git-file-fetch \
             --config configs/${{ matrix.environment }}.json \
             --dry-run \
             --json

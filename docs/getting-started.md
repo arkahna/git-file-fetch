@@ -2,7 +2,7 @@
 
 ## Overview
 
-`fetch-git-file` is a lightweight CLI tool designed to fetch individual files from remote Git repositories and track them locally for reproducibility. It's perfect for:
+`git-file-fetch` is a lightweight CLI tool designed to fetch individual files from remote Git repositories and track them locally for reproducibility. It's perfect for:
 
 - **CI/CD pipelines** that need specific files from external repos
 - **Development workflows** that require external dependencies
@@ -16,7 +16,7 @@
 You can run it directly with npx without installing anything:
 
 ```bash
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:path/to/file.ts"
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### Option 2: Install as a dependency (recommended for projects)
@@ -25,19 +25,19 @@ Add it to your project for consistent versioning:
 
 ```bash
 # Using npm
-npm install -D @arkahna/fetch-git-file
+npm install -D @arkahna/git-file-fetch
 
 # Using pnpm
-pnpm add -D @arkahna/fetch-git-file
+pnpm add -D @arkahna/git-file-fetch
 
 # Using yarn
-yarn add -D @arkahna/fetch-git-file
+yarn add -D @arkahna/git-file-fetch
 ```
 
 Then run:
 
 ```bash
-npx @arkahna/fetch-git-file "https://github.com/user/repo.git@main:path/to/file.ts"
+npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### Option 3: Test the project locally
@@ -48,8 +48,8 @@ If you're developing or want to test the project:
 
 ```bash
 # Clone and setup
-git clone https://github.com/arkahna/fetch-git-file.git
-cd fetch-git-file
+git clone https://github.com/arkahna/git-file-fetch.git
+cd git-file-fetch
 pnpm install
 
 # Build the project
@@ -72,7 +72,7 @@ pnpm run test:smoke
 The basic command format is:
 
 ```bash
-fetch-git-file '<repo.git>@<ref>:<path>'
+git-file-fetch '<repo.git>@<ref>:<path>'
 ```
 
 Where:
@@ -85,16 +85,16 @@ Where:
 
 ```bash
 # Fetch a single file
-npx fetch-git-file "https://github.com/user/repo.git@main:src/utils/logger.ts"
+npx git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
 
 # Fetch with specific tag
-npx fetch-git-file "https://github.com/user/repo.git@v1.2.3:LICENSE"
+npx git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE"
 
 # Dry run (simulate without writing files)
-npx fetch-git-file "https://github.com/user/repo.git@main:src/file.ts" --dry-run
+npx git-file-fetch "https://github.com/user/repo.git@main:src/file.ts" --dry-run
 
 # Specify output directory
-npx fetch-git-file "https://github.com/user/repo.git@main:tools/script.sh" --out third_party
+npx git-file-fetch "https://github.com/user/repo.git@main:tools/script.sh" --out third_party
 ```
 
 ## What Happens
@@ -117,7 +117,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npx fetch-git-file "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run --json
+      - run: npx git-file-fetch "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run --json
 ```
 
 ## Nx Integration
@@ -128,7 +128,7 @@ This package includes a thin Nx executor for Nx workspaces:
 {
   "targets": {
     "fetch": {
-      "executor": "@arkahna/fetch-git-file:fetch",
+      "executor": "@arkahna/git-file-fetch:fetch",
       "options": {
         "args": "https://github.com/user/repo.git@main:src/utils/logger.ts"
       }
