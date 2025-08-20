@@ -65,7 +65,7 @@ pnpm run test:smoke
 ## Requirements
 
 - **Git** available on your PATH
-- **Node.js** >= 18
+- **Node.js** >= 20 (supports 20, 22, 23, 24)
 
 ## Basic Usage
 
