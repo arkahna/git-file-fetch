@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Requirements
 
 - Node.js >= 20 (supports versions 20, 22, 23, 24)
-- pnpm v10.15.0 (specified in packageManager field)
+- pnpm v10.15.1 (specified in packageManager field)
 
 ## Essential Commands
 
@@ -75,7 +75,7 @@ Located in `plugin/executors/fetch/`. Provides Nx workspace integration:
 
 ### When Adding Features
 
-1. Check PROJECT_TODO.md for planned features and version roadmap
+1. Check docs/roadmap.md for planned features and version roadmap
 2. Update both TypeScript types and runtime validation
 3. Add appropriate error handling with meaningful exit codes
 4. Update usage examples in the help text

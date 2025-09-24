@@ -63,3 +63,15 @@ node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-r
 ## License
 
 MIT © Arkahna
+
+## Originally contributed by [Aneki](https://github.com/joshuaboys)
+
+```text
+                  _    _
+  __ _ _ __   ___| | _(_)
+ / _` | '_ \ / _ \ |/ / |
+| (_| | | | |  __/   <| |
+ \__,_|_| |_|\___|_|\_\_|
+
+  === ᚢ · ᚦ · ᚲ ===
+```
