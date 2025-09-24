@@ -7,3 +7,23 @@ src/**/*.js.map
 plugin/**/*.js
 plugin/**/*.js.map
 .pnpm-store
+
+# Secrets and Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+.env.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.cursor/*
+CLAUDE.md
+.idea
+.DS_Store
+
