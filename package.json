@@ -2,13 +2,13 @@
   "name": "@arkahna/git-file-fetch",
   "version": "0.1.0",
   "description": "Fetch specific files from remote git repos and track them locally.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./dist/index.js"
   },
   "bin": {
-    "git-file-fetch": "src/index.js"
+    "git-file-fetch": "dist/index.js"
   },
   "scripts": {
     "start": "ts-node --esm src/index.ts",
@@ -17,7 +17,7 @@
     "typecheck": "npx tsc --noEmit",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
-    "test:smoke": "node src/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
+    "test:smoke": "node dist/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
     "prepack": "pnpm run build"
   },
   "keywords": [
@@ -55,10 +55,10 @@
     "node": ">=20.0.0 <25.0.0"
   },
   "files": [
-    "src/**/*.js",
+    "dist",
     "plugin"
   ],
-  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
+  "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67",
   "publishConfig": {
     "access": "public",
     "provenance": true
