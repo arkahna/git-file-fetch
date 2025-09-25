@@ -65,7 +65,7 @@ pnpm run test:smoke
 ## Requirements
 
 - **Git** available on your PATH
-- **Node.js** >= 20 (supports 20, 22, 23, 24)
+- **Node.js** >= 22 (supports 22, 23, 24)
 
 ## Basic Usage
 
@@ -116,7 +116,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npx git-file-fetch "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run --json
 ```
 
