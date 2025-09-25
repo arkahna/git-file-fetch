@@ -3,7 +3,7 @@
 [![CI](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml/badge.svg)](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@arkahna-npm/git-file-fetch)](https://www.npmjs.com/package/@arkahna-npm/git-file-fetch)
 [![license: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
-[![node >= 20](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](#requirements)
+[![node >= 22](https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg)](#requirements)
 
 A lightweight CLI to fetch individual files from remote Git repositories and track them locally for reproducibility.
 
@@ -58,7 +58,7 @@ node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-r
 ## Requirements
 
 - **Git** available on your PATH
-- **Node.js** >= 20 (supports 20, 22, 23, 24)
+- **Node.js** >= 22 (supports 22, 23, 24)
 
 ## License
 

@@ -193,7 +193,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: |
           npx @arkahna/git-file-fetch \
             --config deps.json \
@@ -206,7 +206,7 @@ jobs:
 
 ```yaml
 fetch-deps:
-  image: node:20
+  image: node:22
   script:
     - npx @arkahna/git-file-fetch --config deps.json --out third_party --json
   artifacts:

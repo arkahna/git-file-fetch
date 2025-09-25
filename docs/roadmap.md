@@ -17,7 +17,7 @@ We're currently in the final stages of preparation before our first npm release.
 - [x] **CLI Help**: Clear flags, examples, and exit codes
 - [x] **Manifest Policy**: Documented both commit and .gitignore patterns
 - [x] **Security Basics**: Token redaction, path traversal prevention, input validation, file size limits
-- [x] **CI/CD**: Matrix builds on Ubuntu, macOS, Windows across Node 20/22/23/24
+- [x] **CI/CD**: Matrix builds on Ubuntu, macOS, Windows across Node 22/23/24
 - [x] **Release Workflow**: Automated npm publish with provenance
 - [x] **Smoke Tests**: Validated against public repos on all platforms
 - [x] **Error Handling**: Documented non-zero exit codes with stable error identifiers
@@ -166,7 +166,7 @@ We're currently in the final stages of preparation before our first npm release.
 
 - [ ] **Platform Testing**:
   - [ ] OS: Linux, macOS, Windows
-  - [ ] Node: 20, 22, 23, 24
+  - [ ] Node: 22, 23, 24
   - [ ] Providers: GitHub public, GitHub private (token), rate-limited scenario
 - [ ] **Feature Testing**:
   - [ ] Single file fetch
