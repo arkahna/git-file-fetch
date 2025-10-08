@@ -26,7 +26,6 @@ git clone https://github.com/arkahna/git-file-fetch.git
 cd git-file-fetch
 pnpm install
 pnpm build
-node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
 ```
 
 **Available development commands:**
@@ -35,6 +34,45 @@ node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-r
 - `pnpm lint:check` - Run ESLint checks
 - `pnpm lint` - Run ESLint with auto-fix
 - `pnpm test:smoke` - Run smoke test
+
+## Local Testing (Before npm Publish)
+
+### Option 1: Link Globally (Recommended)
+Test the tool as if it were installed from npm:
+```bash
+# In the git-file-fetch directory
+pnpm install
+pnpm build
+npm link
+
+# Now use from anywhere on your system
+git-file-fetch "https://github.com/octokit/core.js.git@main:LICENSE"
+
+# To unlink later
+npm unlink -g @arkahna-npm/git-file-fetch
+```
+
+### Option 2: Direct Execution
+Quick testing during development:
+```bash
+# Using built version
+node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
+
+# Or run TypeScript directly (no build needed)
+pnpm start "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
+```
+
+### Option 3: Test in Another Project
+Most realistic test of the published package:
+```bash
+# In git-file-fetch directory
+pnpm pack
+# Creates: arkahna-npm-git-file-fetch-0.1.0.tgz
+
+# In your test project
+npm install /path/to/git-file-fetch/arkahna-npm-git-file-fetch-0.1.0.tgz
+npx git-file-fetch "https://github.com/user/repo.git@main:file.ts"
+```
 
 ## What it does
 
