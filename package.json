@@ -15,10 +15,10 @@
     "build": "npx tsc -p tsconfig.json && npx tsc -p tsconfig.plugin.json && pnpm run build:plugin-assets",
     "build:plugin-assets": "node -e \"require('fs').copyFileSync('plugin/executors.json', 'plugin/executors.json')\" && node -e \"require('fs').copyFileSync('plugin/executors/fetch/schema.json', 'plugin/executors/fetch/schema.json')\"",
     "typecheck": "npx tsc --noEmit",
-    "lint": "eslint . --fix",
-    "lint:check": "eslint .",
-    "lint:md": "markdownlint '**/*.md' --ignore node_modules",
-    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:md": "markdownlint . --ignore node_modules",
+    "lint:md:fix": "markdownlint . --ignore node_modules --fix",
     "test:smoke": "node dist/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
     "prepack": "pnpm run build"
   },
@@ -52,7 +52,8 @@
     "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "github-cli": "^0.0.5"
   },
   "engines": {
     "node": ">=22.0.0 <25.0.0"
@@ -65,5 +66,8 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "dependencies": {
+    
   }
 }
