@@ -17,6 +17,8 @@
     "typecheck": "npx tsc --noEmit",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
+    "lint:md": "markdownlint '**/*.md' --ignore node_modules",
+    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --fix",
     "test:smoke": "node dist/index.js \"https://github.com/octokit/core.js.git@main:LICENSE\" --dry-run --json",
     "prepack": "pnpm run build"
   },
@@ -47,6 +49,7 @@
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
+    "markdownlint-cli": "^0.45.0",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
