@@ -10,17 +10,20 @@ A lightweight CLI to fetch individual files from remote Git repositories and tra
 ## Quick Start
 
 ### 🚀 **Just want to use it?**
+
 ```bash
 npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### 📦 **Want to install it?**
+
 ```bash
 npm install -D @arkahna-npm/git-file-fetch
 npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### 🔧 **Want to test/develop it?**
+
 ```bash
 git clone https://github.com/arkahna/git-file-fetch.git
 cd git-file-fetch
@@ -29,6 +32,7 @@ pnpm build
 ```
 
 **Available development commands:**
+
 - `pnpm build` - Build the project
 - `pnpm typecheck` - Run TypeScript type checking
 - `pnpm lint:check` - Run ESLint checks
@@ -38,7 +42,9 @@ pnpm build
 ## Local Testing (Before npm Publish)
 
 ### Option 1: Link Globally (Recommended)
+
 Test the tool as if it were installed from npm:
+
 ```bash
 # In the git-file-fetch directory
 pnpm install
@@ -53,7 +59,9 @@ npm unlink -g @arkahna-npm/git-file-fetch
 ```
 
 ### Option 2: Direct Execution
+
 Quick testing during development:
+
 ```bash
 # Using built version
 node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
@@ -63,7 +71,9 @@ pnpm start "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
 ```
 
 ### Option 3: Test in Another Project
+
 Most realistic test of the published package:
+
 ```bash
 # In git-file-fetch directory
 pnpm pack
