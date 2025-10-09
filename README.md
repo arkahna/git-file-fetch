@@ -7,46 +7,21 @@
 
 A lightweight CLI to fetch individual files from remote Git repositories and track them locally for reproducibility.
 
-## Quick Start
+> **⚠️ NOT YET PUBLISHED TO NPM**
+> This package is pending its initial npm release. Until then, use the local testing methods below to try it out.
 
-### 🚀 **Just want to use it?**
+## 🧪 Local Testing (Pre-Release)
 
-```bash
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
-```
-
-### 📦 **Want to install it?**
-
-```bash
-npm install -D @arkahna-npm/git-file-fetch
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
-```
-
-### 🔧 **Want to test/develop it?**
-
-```bash
-git clone https://github.com/arkahna/git-file-fetch.git
-cd git-file-fetch
-pnpm install
-pnpm build
-```
-
-**Available development commands:**
-
-- `pnpm build` - Build the project
-- `pnpm typecheck` - Run TypeScript type checking
-- `pnpm lint:check` - Run ESLint checks
-- `pnpm lint` - Run ESLint with auto-fix
-- `pnpm test:smoke` - Run smoke test
-
-## Local Testing (Before npm Publish)
+The package is not yet available on npm. Here's how to test it locally:
 
 ### Option 1: Link Globally (Recommended)
 
 Test the tool as if it were installed from npm:
 
 ```bash
-# In the git-file-fetch directory
+# Clone and setup
+git clone https://github.com/arkahna/git-file-fetch.git
+cd git-file-fetch
 pnpm install
 pnpm build
 npm link
@@ -63,6 +38,12 @@ npm unlink -g @arkahna-npm/git-file-fetch
 Quick testing during development:
 
 ```bash
+# Clone and setup
+git clone https://github.com/arkahna/git-file-fetch.git
+cd git-file-fetch
+pnpm install
+pnpm build
+
 # Using built version
 node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
 
@@ -76,6 +57,7 @@ Most realistic test of the published package:
 
 ```bash
 # In git-file-fetch directory
+pnpm install
 pnpm pack
 # Creates: arkahna-npm-git-file-fetch-0.1.0.tgz
 
@@ -83,6 +65,42 @@ pnpm pack
 npm install /path/to/git-file-fetch/arkahna-npm-git-file-fetch-0.1.0.tgz
 npx git-file-fetch "https://github.com/user/repo.git@main:file.ts"
 ```
+
+---
+
+## Quick Start (After npm Release)
+
+### 🚀 **Just want to use it?**
+
+```bash
+npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
+```
+
+### 📦 **Want to install it?**
+
+```bash
+npm install -D @arkahna-npm/git-file-fetch
+npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
+```
+
+### 🔧 **Want to contribute/develop?**
+
+```bash
+git clone https://github.com/arkahna/git-file-fetch.git
+cd git-file-fetch
+pnpm install
+pnpm build
+```
+
+**Available development commands:**
+
+- `pnpm build` - Build the project
+- `pnpm typecheck` - Run TypeScript type checking
+- `pnpm lint:check` - Run ESLint checks
+- `pnpm lint:fix` - Run ESLint with auto-fix
+- `pnpm lint:md` - Run Markdown lint checks
+- `pnpm lint:md:fix` - Run Markdown lint with auto-fix
+- `pnpm test:smoke` - Run smoke test
 
 ## What it does
 
