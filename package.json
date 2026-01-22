@@ -1,5 +1,5 @@
 {
-  "name": "@arkahna-npm/git-file-fetch",
+  "name": "git-file-fetch",
   "version": "0.1.0",
   "description": "Fetch specific files from remote git repos and track them locally.",
   "main": "dist/index.js",
@@ -30,16 +30,16 @@
     "remote",
     "cli"
   ],
-  "author": "Arkahna",
+  "author": "Joshua Boys",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arkahna/git-file-fetch.git"
+    "url": "git+https://github.com/joshuaboys/git-file-fetch.git"
   },
   "bugs": {
-    "url": "https://github.com/arkahna/git-file-fetch/issues"
+    "url": "https://github.com/joshuaboys/git-file-fetch/issues"
   },
-  "homepage": "https://github.com/arkahna/git-file-fetch#readme",
+  "homepage": "https://github.com/joshuaboys/git-file-fetch#readme",
   "executors": "./plugin/executors.json",
   "devDependencies": {
     "@eslint/js": "^9.33.0",

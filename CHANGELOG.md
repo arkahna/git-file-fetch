@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Initial release of `@arkahna/git-file-fetch` CLI
+- Initial release of `git-file-fetch` CLI
 - Support for fetching single/multiple files from remote Git repositories
 - Shallow Git operations without full repository cloning
 - Manifest tracking via `.git-remote-files.json`

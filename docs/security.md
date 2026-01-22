@@ -6,7 +6,8 @@ We aim to support the current and previous Node.js LTS versions for the CLI. Old
 
 ## Reporting a Vulnerability
 
-- Email: [security@arkahna.io](mailto:security@arkahna.io)
+- Open a [security advisory on GitHub](https://github.com/joshuaboys/git-file-fetch/security/advisories/new)
+- Or email the maintainer directly via GitHub profile contact
 - Please provide details to reproduce, affected versions, and potential impact.
 - Do not create a public issue for sensitive reports.
 

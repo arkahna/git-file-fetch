@@ -3,7 +3,7 @@
 ## CLI Synopsis
 
 ```bash
-@arkahna-npm/git-file-fetch '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
+git-file-fetch '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
 ```
 
 ## Command Line Options
@@ -65,22 +65,22 @@ https://github.com/user/repo.git:src/config.json
 
 ```bash
 # Fetch a single file
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
+npx git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
 
 # Fetch with specific tag
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE"
+npx git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE"
 
 # Eject: copy the file without adding to manifest
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts" --eject
+npx git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts" --eject
 
 # Dry run (simulate without writing files)
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:src/file.ts" --dry-run
+npx git-file-fetch "https://github.com/user/repo.git@main:src/file.ts" --dry-run
 
 # Specify output directory
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:tools/script.sh" --out third_party
+npx git-file-fetch "https://github.com/user/repo.git@main:tools/script.sh" --out third_party
 
 # Config file with JSON output
-npx @arkahna-npm/git-file-fetch --config refs.json --out third_party --json --quiet
+npx git-file-fetch --config refs.json --out third_party --json --quiet
 ```
 
 ## Advanced Usage Examples
@@ -88,7 +88,7 @@ npx @arkahna-npm/git-file-fetch --config refs.json --out third_party --json --qu
 ### Multiple Files in One Run
 
 ```bash
-npx @arkahna-npm/git-file-fetch \
+npx git-file-fetch \
   "https://github.com/user/repo.git@v1.2.3:LICENSE" \
   "https://github.com/user/another-repo.git@main:src/templates/readme.md"
 ```
@@ -107,7 +107,7 @@ Create a JSON file with multiple references:
 Then use it:
 
 ```bash
-npx @arkahna-npm/git-file-fetch --config refs.json --out vendor --json
+npx git-file-fetch --config refs.json --out vendor --json
 ```
 
 ## Manifest
