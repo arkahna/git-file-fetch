@@ -1,92 +1,31 @@
 # git-file-fetch
 
-[![CI](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml/badge.svg)](https://github.com/arkahna/git-file-fetch/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@arkahna-npm/git-file-fetch)](https://www.npmjs.com/package/@arkahna-npm/git-file-fetch)
+[![CI](https://github.com/joshuaboys/git-file-fetch/actions/workflows/ci.yml/badge.svg)](https://github.com/joshuaboys/git-file-fetch/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/git-file-fetch)](https://www.npmjs.com/package/git-file-fetch)
 [![license: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![node >= 22](https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg)](#requirements)
 
 A lightweight CLI to fetch individual files from remote Git repositories and track them locally for reproducibility.
 
-> **⚠️ NOT YET PUBLISHED TO NPM**
-> This package is pending its initial npm release. Until then, use the local testing methods below to try it out.
+## Quick Start
 
-## 🧪 Local Testing (Pre-Release)
-
-The package is not yet available on npm. Here's how to test it locally:
-
-### Option 1: Link Globally (Recommended)
-
-Test the tool as if it were installed from npm:
+### Just want to use it?
 
 ```bash
-# Clone and setup
-git clone https://github.com/arkahna/git-file-fetch.git
-cd git-file-fetch
-pnpm install
-pnpm build
-npm link
-
-# Now use from anywhere on your system
-git-file-fetch "https://github.com/octokit/core.js.git@main:LICENSE"
-
-# To unlink later
-npm unlink -g @arkahna-npm/git-file-fetch
+npx git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
-### Option 2: Direct Execution
-
-Quick testing during development:
+### Want to install it?
 
 ```bash
-# Clone and setup
-git clone https://github.com/arkahna/git-file-fetch.git
-cd git-file-fetch
-pnpm install
-pnpm build
-
-# Using built version
-node dist/index.js "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
-
-# Or run TypeScript directly (no build needed)
-pnpm start "https://github.com/octokit/core.js.git@main:LICENSE" --dry-run
+npm install -D git-file-fetch
+npx git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
-### Option 3: Test in Another Project
-
-Most realistic test of the published package:
+### Want to contribute/develop?
 
 ```bash
-# In git-file-fetch directory
-pnpm install
-pnpm pack
-# Creates: arkahna-npm-git-file-fetch-0.1.0.tgz
-
-# In your test project
-npm install /path/to/git-file-fetch/arkahna-npm-git-file-fetch-0.1.0.tgz
-npx git-file-fetch "https://github.com/user/repo.git@main:file.ts"
-```
-
----
-
-## Quick Start (After npm Release)
-
-### 🚀 **Just want to use it?**
-
-```bash
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
-```
-
-### 📦 **Want to install it?**
-
-```bash
-npm install -D @arkahna-npm/git-file-fetch
-npx @arkahna-npm/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
-```
-
-### 🔧 **Want to contribute/develop?**
-
-```bash
-git clone https://github.com/arkahna/git-file-fetch.git
+git clone https://github.com/joshuaboys/git-file-fetch.git
 cd git-file-fetch
 pnpm install
 pnpm build
@@ -96,10 +35,7 @@ pnpm build
 
 - `pnpm build` - Build the project
 - `pnpm typecheck` - Run TypeScript type checking
-- `pnpm lint:check` - Run ESLint checks
-- `pnpm lint:fix` - Run ESLint with auto-fix
-- `pnpm lint:md` - Run Markdown lint checks
-- `pnpm lint:md:fix` - Run Markdown lint with auto-fix
+- `pnpm lint` - Run ESLint with auto-fix
 - `pnpm test:smoke` - Run smoke test
 
 ## What it does
@@ -111,15 +47,15 @@ pnpm build
 
 ## Documentation
 
-- 🚀 [Getting Started](docs/getting-started.md) - Complete setup guide
-- 📖 [Usage Guide](docs/usage.md) - CLI options and examples
-- ⚙️ [Configuration](docs/configuration.md) - Advanced setup
-- 🔧 [Troubleshooting](docs/troubleshooting.md) - Common issues
-- 🚀 [CI Integration](docs/ci-integration.md) - CI/CD workflows and automation
-- 🛣️ [Roadmap](docs/roadmap.md) - Development plans
-- 🤝 [Contributing](docs/contributing.md) - How to contribute
-- 🔒 [Security](docs/security.md) - Security policies
-- 📋 [Code of Conduct](docs/code-of-conduct.md) - Community guidelines
+- [Getting Started](docs/getting-started.md) - Complete setup guide
+- [Usage Guide](docs/usage.md) - CLI options and examples
+- [Configuration](docs/configuration.md) - Advanced setup
+- [Troubleshooting](docs/troubleshooting.md) - Common issues
+- [CI Integration](docs/ci-integration.md) - CI/CD workflows and automation
+- [Roadmap](docs/roadmap.md) - Development plans
+- [Contributing](docs/contributing.md) - How to contribute
+- [Security](docs/security.md) - Security policies
+- [Code of Conduct](docs/code-of-conduct.md) - Community guidelines
 
 ## Requirements
 
@@ -128,9 +64,11 @@ pnpm build
 
 ## License
 
-MIT © Arkahna
+MIT © Joshua Boys
 
-## Originally contributed by [Aneki](https://github.com/joshuaboys)
+## Author
+
+Created by [Joshua Boys](https://github.com/joshuaboys)
 
 ```text
                   _    _

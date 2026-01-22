@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-`@arkahna/git-file-fetch` is a TypeScript CLI tool that fetches individual files from remote Git repositories without cloning. It uses shallow Git operations and maintains a manifest file (`.git-remote-files.json`) to track fetched files.
+`git-file-fetch` is a TypeScript CLI tool that fetches individual files from remote Git repositories without cloning. It uses shallow Git operations and maintains a manifest file (`.git-remote-files.json`) to track fetched files.
 
 ## Requirements
 

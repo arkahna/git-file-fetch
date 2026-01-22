@@ -11,7 +11,7 @@
 The simplest way to configure the tool is through command line arguments:
 
 ```bash
-npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/file.ts"
+npx git-file-fetch "https://github.com/user/repo.git@main:src/file.ts"
 ```
 
 ### 2. Configuration Files
@@ -19,7 +19,7 @@ npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/file.ts"
 For multiple files or complex setups, use the `--config` option with a JSON file:
 
 ```bash
-npx @arkahna/git-file-fetch --config refs.json --out vendor
+npx git-file-fetch --config refs.json --out vendor
 ```
 
 ### 3. Environment Variables
@@ -29,7 +29,7 @@ Configure behavior through environment variables:
 ```bash
 export FETCH_GIT_FILE_MAX_BYTES=5000000  # 5MB limit
 export FETCH_GIT_FILE_TIMEOUT_MS=30000   # 30 second timeout
-npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:file.txt"
+npx git-file-fetch "https://github.com/user/repo.git@main:file.txt"
 ```
 
 ## Configuration File Format
@@ -125,7 +125,7 @@ This keeps the manifest local to your development environment.
 Override the default manifest location:
 
 ```bash
-npx @arkahna/git-file-fetch \
+npx git-file-fetch \
   --manifest ./config/external-files.json \
   "https://github.com/user/repo.git@main:file.txt"
 ```
@@ -137,7 +137,7 @@ npx @arkahna/git-file-fetch \
 Specify where fetched files should be placed:
 
 ```bash
-npx @arkahna/git-file-fetch \
+npx git-file-fetch \
   --out ./third_party \
   "https://github.com/user/repo.git@main:src/file.ts"
 ```
@@ -147,7 +147,7 @@ npx @arkahna/git-file-fetch \
 Change the working directory before running:
 
 ```bash
-npx @arkahna/git-file-fetch \
+npx git-file-fetch \
   --cwd ./subproject \
   --out ./deps \
   "https://github.com/user/repo.git@main:file.txt"
@@ -160,7 +160,7 @@ npx @arkahna/git-file-fetch \
 Configure network behavior:
 
 ```bash
-npx @arkahna/git-file-fetch \
+npx git-file-fetch \
   --timeout-ms 30000 \
   --retries 3 \
   --retry-backoff-ms 1000 \
@@ -195,7 +195,7 @@ jobs:
         with:
           node-version: 22
       - run: |
-          npx @arkahna/git-file-fetch \
+          npx git-file-fetch \
             --config deps.json \
             --out third_party \
             --json \
@@ -208,7 +208,7 @@ jobs:
 fetch-deps:
   image: node:22
   script:
-    - npx @arkahna/git-file-fetch --config deps.json --out third_party --json
+    - npx git-file-fetch --config deps.json --out third_party --json
   artifacts:
     paths:
       - third_party/

@@ -16,7 +16,7 @@ export default async function runExecutor(
   _context: NxExecutorContext,
 ) {
   try {
-    const command = `npx @arkahna/git-file-fetch ${options.args}`;
+    const command = `npx git-file-fetch ${options.args}`;
     console.log(`Running: ${command}`);
     execSync(command, { stdio: 'inherit' });
     return { success: true };

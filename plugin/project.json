@@ -1,5 +1,5 @@
 {
-  "name": "@arkahna/git-file-fetch",
+  "name": "git-file-fetch",
   "targets": {
     "fetch": {
       "executor": "./plugin/executors/fetch:default",

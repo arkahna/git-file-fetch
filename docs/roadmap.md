@@ -98,7 +98,7 @@ We're currently in the final stages of preparation before our first npm release.
 
 ### Phase 4 TODO Checklist
 
-- [ ] **Executor Package**: Spin out `@arkahna/nx-git-file-fetch` executor + `nx add` generator
+- [ ] **Executor Package**: Spin out `nx-git-file-fetch` executor + `nx add` generator
 - [ ] **Example Workspace**: Create E2E example workspace + docs (include CI usage)
 - [ ] **Caching Config**: Add caching config for outputs if you add `update`/`verify` targets
 - [ ] **Release Automation**: Version alignment and release automation between core and plugin
@@ -239,4 +239,4 @@ Recommended labels for tracking work:
 
 ---
 
-*This roadmap is a living document and will be updated as we progress through development phases. For the latest status, check our [GitHub Issues](https://github.com/arkahna/git-file-fetch/issues) and [Releases](https://github.com/arkahna/git-file-fetch/releases).*
+*This roadmap is a living document and will be updated as we progress through development phases. For the latest status, check our [GitHub Issues](https://github.com/joshuaboys/git-file-fetch/issues) and [Releases](https://github.com/joshuaboys/git-file-fetch/releases).*

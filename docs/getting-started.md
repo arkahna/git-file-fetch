@@ -16,7 +16,7 @@
 You can run it directly with npx without installing anything:
 
 ```bash
-npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
+npx git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### Option 2: Install as a dependency (recommended for projects)
@@ -25,30 +25,28 @@ Add it to your project for consistent versioning:
 
 ```bash
 # Using npm
-npm install -D @arkahna/git-file-fetch
+npm install -D git-file-fetch
 
 # Using pnpm
-pnpm add -D @arkahna/git-file-fetch
+pnpm add -D git-file-fetch
 
 # Using yarn
-yarn add -D @arkahna/git-file-fetch
+yarn add -D git-file-fetch
 ```
 
 Then run:
 
 ```bash
-npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
+npx git-file-fetch "https://github.com/user/repo.git@main:path/to/file.ts"
 ```
 
 ### Option 3: Test the project locally
-
-*This is the only option currently available for testing the project before it's published to npm.*
 
 If you're developing or want to test the project:
 
 ```bash
 # Clone and setup
-git clone https://github.com/arkahna/git-file-fetch.git
+git clone https://github.com/joshuaboys/git-file-fetch.git
 cd git-file-fetch
 pnpm install
 
@@ -128,7 +126,7 @@ This package includes a thin Nx executor for Nx workspaces:
 {
   "targets": {
     "fetch": {
-      "executor": "@arkahna/git-file-fetch:fetch",
+      "executor": "git-file-fetch:fetch",
       "options": {
         "args": "https://github.com/user/repo.git@main:src/utils/logger.ts"
       }

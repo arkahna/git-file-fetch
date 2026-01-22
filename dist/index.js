@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// @arkahna/git-file-fetch
+// git-file-fetch
 // Fetch specific file(s) from remote Git repos and drop them into your project.
 // Tracks origin in .git-remote-files.json for reproducibility.
+const VERSION = '0.1.0';
 import { execFileSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { join, dirname, resolve, sep, posix as pathPosix } from 'path';
@@ -41,10 +42,10 @@ function createLogger(quiet, verbose) {
 }
 function printHelp() {
     const usage = `
-@arkahna/git-file-fetch
+git-file-fetch v${VERSION}
 
 Usage:
-  @arkahna/git-file-fetch '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
+  git-file-fetch '<repo.git>@<ref>:<path>' [more...] [--dry-run] [--force] [--out <dir>] [--cwd <dir>] [--manifest <path>] [--max-bytes <n>] [--config <file>] [--timeout-ms <n>] [--retries <n>] [--retry-backoff-ms <n>] [--eject] [--json] [--quiet] [--verbose]
 
 Options:
   --dry-run           Simulate only; do not write files or update the manifest
@@ -61,13 +62,14 @@ Options:
   --json              Machine-readable JSON output with per-item results
   --quiet             Suppress normal logs (errors still printed)
   --verbose           Print verbose logs for debugging
+  -v, --version       Show version number and exit
   -h, --help          Show this help and exit
 
 Examples:
-  npx @arkahna/git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
-  npx @arkahna/git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE" --force
-  npx @arkahna/git-file-fetch --out third_party "https://github.com/user/repo.git@main:tools/script.sh"
-  npx @arkahna/git-file-fetch --config refs.json --out vendor --json
+  npx git-file-fetch "https://github.com/user/repo.git@main:src/utils/logger.ts"
+  npx git-file-fetch "https://github.com/user/repo.git@v1.2.3:LICENSE" --force
+  npx git-file-fetch --out third_party "https://github.com/user/repo.git@main:tools/script.sh"
+  npx git-file-fetch --config refs.json --out vendor --json
 
 Exit codes:
   0  Success
@@ -158,7 +160,7 @@ function updateManifest(manifestPath, remote) {
     writeFileSync(manifestPath, JSON.stringify(existing, null, 2));
 }
 function fsTempDir() {
-    const dir = join(tmpdir(), `arkahna-git-file-fetch-${Date.now()}`);
+    const dir = join(tmpdir(), `git-file-fetch-${Date.now()}`);
     mkdirSync(dir);
     return dir;
 }
@@ -345,6 +347,7 @@ function fetchFileMinimal(remote, tempDir, timeoutMs, retries, backoffMs, logger
 function main() {
     const argv = process.argv.slice(2);
     const showHelp = argv.includes('-h') || argv.includes('--help');
+    const showVersion = argv.includes('-v') || argv.includes('--version');
     const dryRun = argv.includes('--dry-run');
     const force = argv.includes('--force');
     const jsonOutput = argv.includes('--json');
@@ -395,6 +398,10 @@ function main() {
         ? parseInt(backoffFlag, 10)
         : (envBackoff ?? 500);
     const configFlag = getFlagValue(argv, 'config');
+    if (showVersion) {
+        console.log(VERSION);
+        process.exit(0);
+    }
     if (showHelp) {
         printHelp();
         process.exit(0);
