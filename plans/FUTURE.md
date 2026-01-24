@@ -2,6 +2,8 @@
 
 This document outlines the next wave of high-impact features beyond the v1.1 release.
 
+> **Note:** Monorepo workspace support has been moved to v1.1 — see [13-monorepo-workspaces.aps.md](./modules/13-monorepo-workspaces.aps.md)
+
 ## Wave 2: Automation & Integration (v1.2)
 
 ### Watch Mode with Auto-Update
@@ -47,67 +49,6 @@ git-file-fetch watch --interval 60s
 
 ---
 
-### VS Code Extension
-
-**Problem:** Developers must switch to terminal to manage external files.
-
-**Solution:** VS Code extension with visual file management.
-
-**Key Features:**
-- Sidebar showing tracked external files
-- One-click update/verify
-- Inline diff viewing
-- CodeLens showing external file status
-- Command palette integration
-
-**Impact:** Medium-High — Brings functionality to where developers work.
-
----
-
-## Wave 3: Scale & Enterprise (v1.3)
-
-### Monorepo Workspace Support
-
-**Problem:** Large monorepos need per-package external dependencies with shared config.
-
-**Solution:** Workspace-aware configuration with inheritance.
-
-```
-project/
-├── .git-file-fetch.json      # Root config (shared deps)
-├── packages/
-│   ├── pkg-a/
-│   │   └── .git-file-fetch.json  # Package-specific deps
-│   └── pkg-b/
-│       └── .git-file-fetch.json
-```
-
-**Key Features:**
-- Config inheritance (root + local)
-- Workspace-wide update/verify
-- Nx/Turborepo integration
-- Selective package operations
-
-**Impact:** High — Enables enterprise-scale usage.
-
----
-
-### Private Registry Support
-
-**Problem:** Enterprises need to proxy external fetches through internal systems.
-
-**Solution:** Support private git proxies and registries.
-
-**Key Features:**
-- Mirror configuration
-- Registry authentication
-- Audit logging
-- Access control integration
-
-**Impact:** Medium — Unlocks enterprise adoption.
-
----
-
 ### Lock File with Deterministic Builds
 
 **Problem:** Manifest stores refs but not exact content, making builds potentially non-deterministic.
@@ -136,6 +77,78 @@ project/
 - `install` command to restore from lock
 
 **Impact:** High — Guarantees reproducible builds.
+
+---
+
+### VS Code Extension
+
+**Problem:** Developers must switch to terminal to manage external files.
+
+**Solution:** VS Code extension with visual file management.
+
+**Key Features:**
+- Sidebar showing tracked external files
+- One-click update/verify
+- Inline diff viewing
+- CodeLens showing external file status
+- Command palette integration
+
+**Impact:** Medium-High — Brings functionality to where developers work.
+
+---
+
+## Wave 3: Enterprise & Scale (v1.3)
+
+### Private Registry Support
+
+**Problem:** Enterprises need to proxy external fetches through internal systems.
+
+**Solution:** Support private git proxies and registries.
+
+**Key Features:**
+- Mirror configuration
+- Registry authentication
+- Audit logging
+- Access control integration
+
+**Impact:** Medium — Unlocks enterprise adoption.
+
+---
+
+### Dependency Graph & Visualization
+
+**Problem:** Hard to understand relationships between external files and where they come from.
+
+**Solution:** Generate dependency graphs and visualizations.
+
+```bash
+git-file-fetch graph --format mermaid > deps.md
+git-file-fetch graph --format dot | dot -Tpng > deps.png
+```
+
+**Key Features:**
+- Mermaid diagram output
+- Graphviz DOT format
+- HTML interactive visualization
+- Integration with GitHub dependency graph
+
+**Impact:** Medium — Improves visibility and documentation.
+
+---
+
+### Smart Caching Layer
+
+**Problem:** Repeated fetches of same content waste bandwidth and time.
+
+**Solution:** Local cache with content-addressable storage.
+
+**Key Features:**
+- Content-addressable cache (~/.cache/git-file-fetch/)
+- Cache sharing across projects
+- Cache cleanup commands
+- Offline mode using cache
+
+**Impact:** Medium — Significant speed improvement for repeated operations.
 
 ---
 
@@ -209,19 +222,37 @@ git-file-fetch bundle --config deps.json --out deps.tar.gz
 
 ---
 
+### Multi-Provider Support
+
+**Problem:** Not all code lives on GitHub. Teams use GitLab, Bitbucket, Azure DevOps.
+
+**Solution:** First-class support for multiple git providers with provider-specific optimizations.
+
+**Key Features:**
+- Provider auto-detection from URL
+- Provider-specific auth (GitLab tokens, Bitbucket app passwords)
+- API-based fetching where faster than git
+- Rate limit handling per provider
+
+**Impact:** Medium — Expands addressable market.
+
+---
+
 ## Prioritization Matrix
 
-| Feature | Impact | Effort | Priority |
-|---------|--------|--------|----------|
-| Watch Mode | High | Medium | P1 |
-| GitHub Action | High | Low | P1 |
-| Lock File | High | Medium | P1 |
-| Monorepo Support | High | High | P2 |
-| VS Code Extension | Medium-High | High | P2 |
-| Plugin System | Medium | High | P3 |
-| Private Registry | Medium | Medium | P3 |
-| Template/Scaffold | Medium | Medium | P3 |
-| Archive/Bundle | Low-Medium | Low | P4 |
+| Feature | Impact | Effort | Wave | Priority |
+|---------|--------|--------|------|----------|
+| Watch Mode | High | Medium | v1.2 | P1 |
+| GitHub Action | High | Low | v1.2 | P1 |
+| Lock File | High | Medium | v1.2 | P1 |
+| VS Code Extension | Medium-High | High | v1.2 | P2 |
+| Private Registry | Medium | Medium | v1.3 | P2 |
+| Dependency Graph | Medium | Low | v1.3 | P2 |
+| Smart Caching | Medium | Medium | v1.3 | P2 |
+| Plugin System | Medium | High | v2.0 | P3 |
+| Multi-Provider | Medium | Medium | v2.0 | P3 |
+| Template/Scaffold | Medium | Medium | v2.0 | P3 |
+| Archive/Bundle | Low-Medium | Low | v2.0 | P4 |
 
 ---
 
