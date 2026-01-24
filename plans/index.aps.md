@@ -20,6 +20,7 @@ Enhance git-file-fetch from a basic file fetching CLI to a comprehensive externa
 - [ ] Concurrent fetching reduces wait time for large configs
 - [ ] Progress indicators show network operation status
 - [ ] Shell completions available for bash/zsh/fish
+- [ ] Monorepo workspaces supported with config inheritance
 
 ## Constraints
 
@@ -39,7 +40,8 @@ graph TB
     CMD --> LIST[list]
     CMD --> INIT[init]
 
-    FETCH --> GLOB[Glob Resolver]
+    FETCH --> WORKSPACE[Workspace Resolver]
+    WORKSPACE --> GLOB[Glob Resolver]
     FETCH --> CONCURRENT[Concurrent Fetcher]
     UPDATE --> MANIFEST[Manifest Reader]
     VERIFY --> MANIFEST
@@ -76,6 +78,12 @@ graph TB
 - **Includes:** progress-indicators, shell-completion, init-command, error-hints
 - **Gate:** Polished CLI experience
 
+### M4: Monorepo & Scale
+
+- **Target:** Sprint 4
+- **Includes:** monorepo-workspaces
+- **Gate:** Workspace-aware operations with config inheritance
+
 ## Modules
 
 | Module | Scope | Owner | Status | Priority | Tags | Dependencies |
@@ -92,6 +100,7 @@ graph TB
 | [10-list-command](./modules/10-list-command.aps.md) | WORKFLOW | — | Draft | medium | cli, manifest | npm-publish |
 | [11-init-command](./modules/11-init-command.aps.md) | UX | — | Draft | medium | cli | npm-publish |
 | [12-error-hints](./modules/12-error-hints.aps.md) | UX | — | Draft | medium | cli | npm-publish |
+| [13-monorepo-workspaces](./modules/13-monorepo-workspaces.aps.md) | SCALE | — | Draft | high | workspace, config | npm-publish |
 
 ## Risks & Mitigations
 
@@ -120,4 +129,4 @@ See [FUTURE.md](./FUTURE.md) for next-wave killer features:
 - Watch mode with auto-update
 - GitHub Actions native integration
 - VS Code extension
-- Monorepo support with workspace configs
+- Lock file for deterministic builds
