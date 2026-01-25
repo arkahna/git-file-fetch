@@ -48,9 +48,6 @@ jobs:
           fi
           echo "version=$PKG_VERSION" >> $GITHUB_OUTPUT
 
-      - name: Generate SBOM (CycloneDX)
-        run: pnpm dlx @cyclonedx/cyclonedx-npm --output-format xml --output-file sbom.xml
-
       - name: Pack tarball for local install
         id: pack
         run: |
@@ -87,13 +84,11 @@ jobs:
           popd >/dev/null
           rm -rf "$WORKDIR"
 
-      - name: Upload artefacts (tarball + SBOM)
+      - name: Upload artefacts (tarball)
         uses: actions/upload-artifact@v4
         with:
           name: npm-artifacts-v${{ steps.version_check.outputs.version }}
-          path: |
-            ${{ steps.pack.outputs.tarball }}
-            sbom.xml
+          path: ${{ steps.pack.outputs.tarball }}
           if-no-files-found: error
           retention-days: 7
 
@@ -102,12 +97,10 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access public --provenance
 
-      - name: Create GitHub Release (attach tarball & SBOM)
+      - name: Create GitHub Release (attach tarball)
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version_check.outputs.version }}
           name: v${{ steps.version_check.outputs.version }}
           generate_release_notes: true
-          files: |
-            ${{ steps.pack.outputs.tarball }}
-            sbom.xml
+          files: ${{ steps.pack.outputs.tarball }}
