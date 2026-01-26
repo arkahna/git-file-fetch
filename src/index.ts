@@ -4,7 +4,7 @@
 // Fetch specific file(s) from remote Git repos and drop them into your project.
 // Tracks origin in .git-remote-files.json for reproducibility.
 
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 
 type Command = 'fetch' | 'update' | 'verify' | 'list';
 const SUBCOMMANDS: Command[] = ['update', 'verify', 'list'];

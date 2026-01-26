@@ -1,6 +1,6 @@
 {
   "name": "git-file-fetch",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Fetch specific files from remote git repos and track them locally.",
   "main": "dist/index.js",
   "type": "module",

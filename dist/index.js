@@ -2,7 +2,7 @@
 // git-file-fetch
 // Fetch specific file(s) from remote Git repos and drop them into your project.
 // Tracks origin in .git-remote-files.json for reproducibility.
-const VERSION = '0.2.0';
+const VERSION = '0.2.1';
 const SUBCOMMANDS = ['update', 'verify', 'list'];
 import { execFileSync } from 'child_process';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
