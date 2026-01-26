@@ -1,6 +1,6 @@
 {
   "name": "git-file-fetch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Fetch specific files from remote git repos and track them locally.",
   "main": "dist/index.js",
   "type": "module",
@@ -64,10 +64,6 @@
   ],
   "packageManager": "pnpm@10.18.1+sha512.77a884a165cbba2d8d1c19e3b4880eee6d2fcabd0d879121e282196b80042351d5eb3ca0935fa599da1dc51265cc68816ad2bddd2a2de5ea9fdf92adbec7cd34",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
-  },
-  "dependencies": {
-    
+    "access": "public"
   }
 }
