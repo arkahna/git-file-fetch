@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Requirements
 
-- Node.js >= 22 (supports versions 22, 23, 24)
+- Node.js >= 22
 - pnpm v10.18.1+ (specified in packageManager field)
 
 ## Essential Commands

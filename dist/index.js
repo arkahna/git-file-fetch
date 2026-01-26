@@ -596,7 +596,12 @@ function runVerify(manifestPath, changedOnly, timeoutMs, retries, backoffMs, log
             }
             else {
                 logger.error(`Error verifying ${entry.destPath}: ${code}: ${message}`);
-                results.push({ destPath: entry.destPath, status: 'error', errorCode: code, errorMessage: message });
+                results.push({
+                    destPath: entry.destPath,
+                    status: 'error',
+                    errorCode: code,
+                    errorMessage: message,
+                });
             }
         }
         finally {

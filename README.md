@@ -60,7 +60,7 @@ pnpm build
 ## Requirements
 
 - **Git** available on your PATH
-- **Node.js** >= 22 (supports 22, 23, 24)
+- **Node.js** >= 22
 
 ## License
 

@@ -747,11 +747,18 @@ function runVerify(
       const code = e instanceof CliError ? e.code : 'UNKNOWN_ERROR';
       const message = e instanceof Error ? e.message : String(e);
       if (code === 'GIT_COMMAND_FAILED' && message.includes('not a tree object')) {
-        logger.log(`MISSING  ${entry.destPath} (remote SHA not found - repo may have force-pushed)`);
+        logger.log(
+          `MISSING  ${entry.destPath} (remote SHA not found - repo may have force-pushed)`,
+        );
         results.push({ destPath: entry.destPath, status: 'missing-remote' });
       } else {
         logger.error(`Error verifying ${entry.destPath}: ${code}: ${message}`);
-        results.push({ destPath: entry.destPath, status: 'error', errorCode: code, errorMessage: message });
+        results.push({
+          destPath: entry.destPath,
+          status: 'error',
+          errorCode: code,
+          errorMessage: message,
+        });
       }
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
