@@ -44,35 +44,35 @@ export default [
     },
   },
   // Non type-aware rules for Nx plugin files to avoid requiring nx/devkit types
-        {
-        files: ['plugin/**/*.ts', 'plugin/**/*.tsx'],
-        ignores: ['plugin/**/*.js'],
-        languageOptions: {
-          parser: typescriptParser,
-          parserOptions: {
-            ecmaVersion: 2022,
-            sourceType: 'module',
-          },
-          globals: {
-            console: 'readonly',
-            process: 'readonly',
-          },
-        },
-        plugins: {
-          '@typescript-eslint': typescript,
-          prettier: prettier,
-        },
-        rules: {
-          ...typescript.configs['recommended'].rules,
-          ...prettierConfig.rules,
-          'prettier/prettier': 'error',
-          '@typescript-eslint/no-explicit-any': 'warn',
-          '@typescript-eslint/no-unused-vars': ['error', {
-            argsIgnorePattern: '^_',
-            varsIgnorePattern: '^_',
-          }],
-        },
+  {
+    files: ['plugin/**/*.ts', 'plugin/**/*.tsx'],
+    ignores: ['plugin/**/*.js'],
+    languageOptions: {
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
       },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescript,
+      prettier: prettier,
+    },
+    rules: {
+      ...typescript.configs['recommended'].rules,
+      ...prettierConfig.rules,
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+    },
+  },
   {
     ignores: ['dist/**', 'node_modules/**', '.pnpm-store/**', 'plugin/**/*.js', 'src/**/*.js'],
   },

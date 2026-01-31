@@ -10,7 +10,7 @@
     "rootDir": "./plugin",
     "declaration": false,
     "noEmit": false,
-    "outDir": "./src"
+    "outDir": "./.plugin-build"
   },
   "include": ["plugin/**/*.ts"]
 }

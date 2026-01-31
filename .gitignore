@@ -7,6 +7,7 @@ src/**/*.js.map
 plugin/**/*.js
 plugin/**/*.js.map
 .pnpm-store
+.plugin-build
 
 # Secrets and Variables
 .env

@@ -2,12 +2,14 @@
 // git-file-fetch
 // Fetch specific file(s) from remote Git repos and drop them into your project.
 // Tracks origin in .git-remote-files.json for reproducibility.
-const VERSION = '0.2.1';
+const _require = createRequire(import.meta.url);
+const VERSION = _require('../package.json').version;
 const SUBCOMMANDS = ['update', 'verify', 'list'];
-import { execFileSync } from 'child_process';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { execFileSync, spawnSync } from 'child_process';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'fs';
 import { join, dirname, resolve, sep, posix as pathPosix } from 'path';
 import { tmpdir } from 'os';
+import { createRequire } from 'module';
 const defaultManifestFile = '.git-remote-files.json';
 const defaultMaxBytes = 10_000_000; // ~10 MB
 class CliError extends Error {
@@ -222,11 +224,8 @@ function runGitWithRetry(args, opts) {
             if (attempt < retries) {
                 const delay = backoffMs * Math.pow(2, attempt);
                 logger.warn(`git ${args.join(' ')} failed (attempt ${attempt + 1} of ${retries + 1}). Retrying in ${delay}ms...`);
-                // Use blocking approach with busy wait for synchronous compatibility
-                const start = Date.now();
-                while (Date.now() - start < delay) {
-                    // Busy wait - not ideal but maintains sync interface
-                }
+                // Block synchronously without burning CPU
+                spawnSync('sleep', [(delay / 1000).toString()]);
                 continue;
             }
             break;
@@ -236,28 +235,52 @@ function runGitWithRetry(args, opts) {
         ? new CliError('GIT_COMMAND_FAILED', lastError.message)
         : new CliError('GIT_COMMAND_FAILED', String(lastError));
 }
+function isValidRemoteFile(entry) {
+    if (typeof entry !== 'object' || entry === null)
+        return false;
+    const obj = entry;
+    return (typeof obj.repo === 'string' &&
+        typeof obj.ref === 'string' &&
+        typeof obj.filePath === 'string' &&
+        typeof obj.destPath === 'string');
+}
 function readManifest(manifestPath) {
     if (!existsSync(manifestPath))
         return [];
     const text = readFileSync(manifestPath, 'utf-8');
     try {
         const parsed = JSON.parse(text);
-        return Array.isArray(parsed) ? parsed : [];
+        if (!Array.isArray(parsed))
+            return [];
+        const valid = parsed.filter((entry) => {
+            if (isValidRemoteFile(entry))
+                return true;
+            console.warn(`Warning: skipping invalid manifest entry: ${JSON.stringify(entry)}`);
+            return false;
+        });
+        return valid;
     }
-    catch {
+    catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        console.warn(`Warning: failed to parse manifest ${manifestPath}: ${msg}`);
         return [];
     }
 }
 function updateManifest(manifestPath, remote) {
     const existing = readManifest(manifestPath);
-    existing.push(remote);
+    // Replace any existing entry for the same (repo, filePath, destPath) tuple
+    const idx = existing.findIndex((e) => e.repo === remote.repo && e.filePath === remote.filePath && e.destPath === remote.destPath);
+    if (idx !== -1) {
+        existing[idx] = remote;
+    }
+    else {
+        existing.push(remote);
+    }
     ensureDirFor(manifestPath);
     writeFileSync(manifestPath, JSON.stringify(existing, null, 2));
 }
 function fsTempDir() {
-    const dir = join(tmpdir(), `git-file-fetch-${Date.now()}`);
-    mkdirSync(dir);
-    return dir;
+    return mkdtempSync(join(tmpdir(), 'git-file-fetch-'));
 }
 function getFlagValue(args, name) {
     const long = `--${name}`;
@@ -302,7 +325,6 @@ function loadConfigFile(configPath) {
             const repoVal = anyItem.repo;
             const refVal = anyItem.ref ?? 'main';
             const pathVal = anyItem.path ?? anyItem.filePath;
-            const destVal = anyItem.dest ?? anyItem.destPath;
             if (typeof repoVal !== 'string' || typeof pathVal !== 'string') {
                 throw new CliError('CONFIG_INVALID', 'Object entries must include string fields { repo, path }');
             }
@@ -311,7 +333,6 @@ function loadConfigFile(configPath) {
             const path = pathVal;
             const spec = `${repo}@${ref}:${path}`;
             out.push(spec);
-            void destVal;
         }
         else {
             throw new CliError('CONFIG_INVALID', 'Unsupported config item type');
@@ -747,12 +768,14 @@ function main() {
             const errMessage = e instanceof Error ? e.message : String(e);
             const code = e instanceof CliError ? e.code : 'CONFIG_ERROR';
             logger.error(`Error: ${code}: ${errMessage}`);
-            process.exit(1);
+            process.exitCode = 1;
+            return;
         }
     }
     if (entries.length === 0) {
         printHelp();
-        process.exit(2);
+        process.exitCode = 2;
+        return;
     }
     const results = [];
     for (const arg of entries) {
