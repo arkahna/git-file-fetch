@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 
 export interface FetchExecutorOptions {
   args: string;
@@ -16,9 +16,10 @@ export default async function runExecutor(
   _context: NxExecutorContext,
 ) {
   try {
-    const command = `npx git-file-fetch ${options.args}`;
-    console.log(`Running: ${command}`);
-    execSync(command, { stdio: 'inherit' });
+    const args = options.args.match(/"[^"]*"|'[^']*'|\S+/g) ?? [];
+    const sanitized = args.map((a) => a.replace(/^['"]|['"]$/g, ''));
+    console.log(`Running: npx git-file-fetch ${sanitized.join(' ')}`);
+    execFileSync('npx', ['git-file-fetch', ...sanitized], { stdio: 'inherit' });
     return { success: true };
   } catch (error) {
     console.error('Fetch failed:', error);
